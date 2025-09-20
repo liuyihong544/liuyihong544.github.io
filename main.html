@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yihong Liu — Homepage</title>
+  <meta name="description" content="The personal GitHub homepage of Yihong Liu (Dicken)." />
+  <meta property="og:title" content="Yihong Liu — Homepage" />
+  <meta property="og:description" content="Email: yh-liu24@mails.tsinghua.edu.cn" />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #111218;
+      --text: #e5e7eb;
+      --muted: #a1a1aa;
+      --accent: #60a5fa;
+      --ring: #1f2937;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#475569; --accent:#2563eb; --ring:#e2e8f0; }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 1200px at 80% -10%, rgba(96,165,250,.15), transparent 40%), var(--bg);
+      color: var(--text);
+      display: grid; place-items: center; padding: 2rem;
+    }
+    .card {
+      width: min(640px, 92vw);
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card), #ffffff 2%), var(--card));
+      border: 1px solid var(--ring);
+      border-radius: 1.25rem;
+      padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 0 0 .25rem; letter-spacing: .2px; }
+    .sub { color: var(--muted); margin: 0 0 1.5rem; }
+    .row { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; }
+    .pill { display:inline-flex; align-items:center; gap:.5rem; border:1px solid var(--ring); padding:.65rem .9rem; border-radius:999px; background: color-mix(in oklab, var(--card), #fff 3%); }
+    a { color: var(--accent); text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid color-mix(in oklab, var(--accent), #fff 25%); outline-offset: 3px; border-radius: 8px; }
+    .copy { border:1px solid var(--ring); background: transparent; color: var(--text); padding:.55rem .8rem; border-radius:.75rem; cursor:pointer; }
+    .copy:hover { background: color-mix(in oklab, var(--card), #fff 4%); }
+    .footer { margin-top: 1.5rem; font-size: .9rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>Yihong Liu</h1>
+    <p class="sub">(Dicken)</p>
+
+    <div class="row" aria-label="Contact">
+      <span class="pill" title="Email">
+        📧 <a href="mailto:yh-liu24@mails.tsinghua.edu.cn">yh-liu24@mails.tsinghua.edu.cn</a>
+      </span>
+      <button class="copy" id="copyBtn" aria-live="polite" aria-label="Copy email">Copy email</button>
+    </div>
+
+    <p class="footer">© <span id="year"></span> Yihong Liu. Built with plain HTML &amp; CSS.
+    </p>
+  </main>
+
+  <script>
+    const email = "yh-liu24@mails.tsinghua.edu.cn";
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        const btn = document.getElementById("copyBtn");
+        const prev = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(()=>{ btn.textContent = prev; }, 1500);
+      } catch (e) { alert("Copy failed. Your browser may block clipboard access."); }
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
